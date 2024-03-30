@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Banana_Jump_Temp.sln"
+    "dotnet.defaultSolution": "Banana_Jump.sln"
 }

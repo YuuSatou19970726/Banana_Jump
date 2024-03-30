@@ -34,6 +34,26 @@ public class Player : MonoBehaviour
 
     }
 
+    void FixedUpdate()
+    {
+        Movement();
+    }
+
+    void Movement()
+    {
+        if (player_Died)
+            return;
+
+        if (Input.GetAxisRaw(Axis.HORIZONTAL_AXIS) > 0)
+        {
+            myBody.velocity = new Vector2(move_Speed, myBody.velocity.y);
+        }
+        else if (Input.GetAxisRaw(Axis.HORIZONTAL_AXIS) < 0)
+        {
+            myBody.velocity = new Vector2(-move_Speed, myBody.velocity.y);
+        }
+    }
+
     void OnTriggerEnter2D(Collider2D target)
     {
         if (target.tag == Tags.EXTRA_PUSH)
@@ -46,11 +66,53 @@ public class Player : MonoBehaviour
 
                 target.gameObject.SetActive(false);
 
-                // SoundManager
+                SoundManager.instance.JumpSoundFX();
 
                 // exit from thr on trigger enter because of initial push
                 return;
             }
+
+            // outside of the initial push
+
+        } // because of the initial push
+
+        if (target.tag == Tags.NORMAL_PUSH)
+        {
+            myBody.velocity = new Vector2(myBody.velocity.x, normal_Push);
+
+            target.gameObject.SetActive(false);
+
+            push_Count++;
+
+            SoundManager.instance.JumpSoundFX();
+        }
+
+        if (target.tag == Tags.EXTRA_PUSH)
+        {
+            myBody.velocity = new Vector2(myBody.velocity.x, extra_Push);
+
+            target.gameObject.SetActive(false);
+
+            push_Count++;
+
+            SoundManager.instance.JumpSoundFX();
+        }
+
+        if (push_Count == 2)
+        {
+            push_Count = 0;
+            PlatformSpawner.instance.SpawnPlatforms();
+        }
+
+        if (target.tag == Tags.FALL_DOWN || target.tag == Tags.BIRD_TAG)
+        {
+            player_Died = true;
+
+            // SoundManager
+            SoundManager.instance.GameOverSoundFX();
+
+            // GameManager
+            GameManager.instance.RestartGame();
         }
     }
 }

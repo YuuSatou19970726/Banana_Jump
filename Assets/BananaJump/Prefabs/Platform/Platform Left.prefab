@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 2353916041149739009}
   - component: {fileID: 4374415751214291809}
   - component: {fileID: 111785362413559545}
+  - component: {fileID: -7778364496648721312}
   m_Layer: 0
   m_Name: Platform Left
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -131,6 +132,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.73, y: 0.17}
   m_EdgeRadius: 0
+--- !u!114 &-7778364496648721312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6729162623225649596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24c94156e9cc9474b9c6470d5624c4b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  one_Banana: {fileID: 6107341199415569079, guid: a839deca87712d641b5ba5954677e5da, type: 3}
+  bananas: {fileID: 4480048241419418058, guid: 880df5b9385b9ed4e9e03526b00c9088, type: 3}
+  spawn_Point: {fileID: 7506205001765512711}
 --- !u!1 &8449302274516149565
 GameObject:
   m_ObjectHideFlags: 0
